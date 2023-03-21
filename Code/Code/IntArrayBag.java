@@ -21,7 +21,7 @@ public class IntArrayBag {
     }
     //empty() - returns true if no valid items, false otherwise
     public boolean is_empty(){
-        return numItems == 3;
+        return numItems == 0;
     }
     //full()
     public boolean is_full(){

@@ -1,4 +1,4 @@
-package Test;
+package Code;
 
 public class write{
     public static void vertical(int n){

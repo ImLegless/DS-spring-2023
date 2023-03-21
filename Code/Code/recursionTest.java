@@ -1,4 +1,4 @@
-package Test;
+package Code;
 
 public class recursionTest {
     public static void main(String[] args){

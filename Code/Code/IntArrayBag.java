@@ -70,6 +70,7 @@ public class IntArrayBag implements Cloneable {
 
 
     
+
     //increases the storage of the data set
     public void grow(){
         //we need to allocate an array thats

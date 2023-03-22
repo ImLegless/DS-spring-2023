@@ -1,6 +1,6 @@
 package Code;
 
-public class IntArrayBag {
+public class IntArrayBag implements Cloneable {
     //instance variables
     private int numItems; //the number of current items in the bag
                           //0<=numItems<=data.length
@@ -44,12 +44,11 @@ public class IntArrayBag {
     public void add(int value){
         //start with a simple bad that refuses to add when out of room
         if(is_full()){
-            System.out.println("Storage full");
+            //System.out.println("Storage full");
+            grow();
         }
-        else{
-            data[numItems] = value;
-            numItems++;
-        }
+        data[numItems] = value;
+        numItems++;
     }
     //remove()
     public void remove(int value){
@@ -63,7 +62,47 @@ public class IntArrayBag {
             }
         }
     }
+    //increases the storage of the data set
+    public void grow(){
+        //we need to allocate an array thats
+        //twice the size of data[]
+        int[] newData = new int[data.length*2];
+        for(int i = 0; i <numItems;i++){
+            newData[i] = data[i];
+        }
+        //newData is a temprary local variable and goes away
+        //at the end of this method
+        //to keep access to the new larger array. we should
+        //have data also refer to it
+        data=newData;
+        //in java, the old data array now has no reference
+        //and it gets garbage collected
+
+    }
+    //decreases the storage of the data set
+    public void shrink(){
+        int[] newData = new int[numItems];
+        for(int i = 0; i < numItems;i++){
+            newData[i] = data[i];
+        }
+        data = newData;
+    }
 
 
+    public void add_many(int ...values){
+        for(int i = 0; i < values.length; i++){
+            add(values[i]);
+        }
+    }
+
+    public void add_all(IntArrayBag other){
+        for(int i = 0; i<other.numItems;i++){
+            add(other.data[i]);
+        }
+    }
+
+    public void remove_all(){
+        numItems=0;
+    }
 
 }

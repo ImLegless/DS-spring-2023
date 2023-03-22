@@ -20,5 +20,8 @@ public class Test {
         System.out.println(b.getSize());
         System.out.println(b);
 
+        b.add_many(1,1,1,1,1,1);
+        System.out.println(b.getSize());
+
     }
 }

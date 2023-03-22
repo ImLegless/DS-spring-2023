@@ -7,55 +7,60 @@ public class IntArrayBag implements Cloneable {
     private int [] data; /*storage for the data, valid items are
                          always in indices 0 to numItems -1*/
 
-    /*default constructor - create an array of default size and 
-    *                       start empty
-    */
-    public IntArrayBag(){
+    /*
+     * default constructor - create an array of default size and
+     * start empty
+     */
+    public IntArrayBag() {
         data = new int[5];
         numItems = 0;
     }
-    //custom contructor
-    public IntArrayBag(int capacity){
+
+    // custom contructor
+    public IntArrayBag(int capacity) {
         data = new int[capacity];
         numItems = 0;
     }
-    //empty() - returns true if no valid items, false otherwise
-    public boolean is_empty(){
+
+    // empty() - returns true if no valid items, false otherwise
+    public boolean is_empty() {
         return numItems == 0;
     }
-    //full()
-    public boolean is_full(){
+
+    // full()
+    public boolean is_full() {
         return numItems == data.length;
     }
-    //contains() - true if value is equal to at least 1 item
-    public boolean contains(int value){
-        for(int i = 0;i<numItems;i++){
-            if(data[i]==value){
+
+    // contains() - true if value is equal to at least 1 item
+    public boolean contains(int value) {
+        for (int i = 0; i < numItems; i++) {
+            if (data[i] == value) {
                 return true;
             }
         }
         return false;
     }
-    //size
-    public int getSize(){
+
+    // size
+    public int getSize() {
         return numItems;
     }
     //add()
     public void add(int value){
         //start with a simple bad that refuses to add when out of room
-        if(is_full()){
-            //System.out.println("Storage full");
-            grow();
+            if(is_full()){
+                //System.out.println("Storage full");
+                grow();
+            }
         }
-        data[numItems] = value;
-        numItems++;
-    }
-    //remove()
-    public void remove(int value){
-        if(contains(value)){
-            for(int i = 0;i<numItems;i++){
-                if(data[i]==value){
-                    data[i] = data[numItems -1];
+
+    // remove()
+    public void remove(int value) {
+        if (contains(value)) {
+            for (int i = 0; i < numItems; i++) {
+                if (data[i] == value) {
+                    data[i] = data[numItems - 1];
                     numItems--;
                     break;
                 }
@@ -88,13 +93,11 @@ public class IntArrayBag implements Cloneable {
         data = newData;
     }
 
-
-    public void add_many(int ...values){
-        for(int i = 0; i < values.length; i++){
-            add(values[i]);
+    public void add_many(int[]... values) {
+        for (int i = 0; i < values.length; i++) {
+            add(data[i]);
         }
     }
-
     public void add_all(IntArrayBag other){
         for(int i = 0; i<other.numItems;i++){
             add(other.data[i]);
@@ -104,5 +107,5 @@ public class IntArrayBag implements Cloneable {
     public void remove_all(){
         numItems=0;
     }
-
 }
+    }

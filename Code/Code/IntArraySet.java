@@ -1,6 +1,6 @@
 package Code;
 
-public class IntArrayBag implements Cloneable {
+public class IntArraySet implements Cloneable {
     //instance variables
     private int numItems; //the number of current items in the bag
                           //0<=numItems<=data.length
@@ -11,13 +11,13 @@ public class IntArrayBag implements Cloneable {
      * default constructor - create an array of default size and
      * start empty
      */
-    public IntArrayBag() {
+    public IntArraySet() {
         data = new int[5];
         numItems = 0;
     }
 
     // custom contructor
-    public IntArrayBag(int capacity) {
+    public IntArraySet(int capacity) {
         data = new int[capacity];
         numItems = 0;
     }
@@ -49,10 +49,15 @@ public class IntArrayBag implements Cloneable {
     //add()
     public void add(int value){
         //start with a simple bad that refuses to add when out of room
+        if(contains(value)){
+            return;
+        }
             if(is_full()){
                 //System.out.println("Storage full");
                 grow();
             }
+            data[numItems] = value;
+            numItems++;
         }
 
     // remove()
@@ -102,7 +107,7 @@ public class IntArrayBag implements Cloneable {
             add(data[i]);
         }
     }
-    public void add_all(IntArrayBag other){
+    public void add_all(IntArraySet other){
         for(int i = 0; i<other.numItems;i++){
             add(other.data[i]);
         }
